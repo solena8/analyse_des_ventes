@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f5f5f5" rx="15" ry="15"/>
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">Architecture à deux services</text>
+
+  <!-- Network Container -->
+  <rect x="100" y="80" width="600" height="320" fill="#e0e0e0" stroke="#c0c0c0" stroke-width="2" stroke-dasharray="5,5" rx="10" ry="10"/>
+  <text x="400" y="105" font-family="Arial" font-size="16" text-anchor="middle" fill="#505050" font-style="italic">Réseau de services</text>
+
+  <!-- Service 1: Scripts Execution -->
+  <rect x="150" y="130" width="220" height="190" fill="#61b3de" rx="10" ry="10" stroke="#2980b9" stroke-width="2"/>
+  <text x="260" y="155" font-family="Arial" font-size="18" text-anchor="middle" fill="#fff" font-weight="bold">Service d'exécution</text>
+  <text x="260" y="180" font-family="Arial" font-size="14" text-anchor="middle" fill="#fff">(Python)</text>
+
+  <!-- Modules in Script Service -->
+  <rect x="170" y="200" width="180" height="30" fill="#4ca5d8" rx="5" ry="5"/>
+  <text x="260" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#fff">Module d'import</text>
+
+  <rect x="170" y="240" width="180" height="30" fill="#4ca5d8" rx="5" ry="5"/>
+  <text x="260" y="260" font-family="Arial" font-size="12" text-anchor="middle" fill="#fff">Module d'analyse</text>
+
+  <rect x="170" y="280" width="180" height="30" fill="#4ca5d8" rx="5" ry="5"/>
+  <text x="260" y="300" font-family="Arial" font-size="12" text-anchor="middle" fill="#fff">Module de résultats</text>
+
+  <!-- Service 2: Database Storage -->
+  <rect x="430" y="130" width="220" height="190" fill="#27ae60" rx="10" ry="10" stroke="#1e8449" stroke-width="2"/>
+  <text x="540" y="155" font-family="Arial" font-size="18" text-anchor="middle" fill="#fff" font-weight="bold">Service de stockage</text>
+  <text x="540" y="180" font-family="Arial" font-size="14" text-anchor="middle" fill="#fff">(SQLite)</text>
+
+  <rect x="450" y="200" width="180" height="40" fill="#24a056" rx="5" ry="5"/>
+  <text x="540" y="220" font-family="Arial" font-size="12" text-anchor="middle" fill="#fff">Gestionnaire</text>
+  <text x="540" y="235" font-family="Arial" font-size="12" text-anchor="middle" fill="#fff">de Base de Données</text>
+
+  <!-- Database inside SQLite service -->
+  <rect x="450" y="250" width="180" height="60" fill="#1e8449" rx="5" ry="5" stroke="#fff" stroke-width="1"/>
+  <text x="540" y="280" font-family="Arial" font-size="12" text-anchor="middle" fill="#fff">Base de Données</text>
+  <text x="540" y="295" font-family="Arial" font-size="12" text-anchor="middle" fill="#fff">(ventes.db)</text>
+
+  <!-- Shared Volume -->
+  <rect x="260" y="360" width="280" height="30" fill="#f5a742" rx="8" ry="8" stroke="#e67e22" stroke-width="2"/>
+  <text x="400" y="380" font-family="Arial" font-size="14" text-anchor="middle" fill="#fff" font-weight="bold">Espace de données partagé</text>
+
+  <!-- Dependency Arrow -->
+  <line x1="370" y1="160" x2="430" y2="160" stroke="#34495e" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#dependency-arrow)"/>
+  <text x="400" y="145" font-family="Arial" font-size="12" text-anchor="middle" fill="#34495e">dépend de</text>
+
+  <!-- Data Flow Arrows from Scripts to SQLite Service -->
+  <line x1="370" y1="215" x2="430" y2="215" stroke="#e74c3c" stroke-width="1.5" marker-end="url(#data-arrow)"/>
+  <text x="400" y="205" font-family="Arial" font-size="10" text-anchor="middle" fill="#e74c3c">Insertion</text>
+
+  <line x1="370" y1="255" x2="430" y2="255" stroke="#e74c3c" stroke-width="1.5" marker-end="url(#data-arrow)"/>
+  <text x="400" y="245" font-family="Arial" font-size="10" text-anchor="middle" fill="#e74c3c">Requêtes</text>
+
+
+  <!-- DB to Shared Volume -->
+  <line x1="540" y1="320" x2="540" y2="360" stroke="#e67e22" stroke-width="2" marker-end="url(#file-arrow)"/>
+  <text x="540" y="335" font-family="Arial" font-size="10" text-anchor="start" fill="#e67e22">Stocké dans</text>
+
+  <!-- Arrow Markers -->
+  <defs>
+    <marker id="dependency-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34495e"/>
+    </marker>
+    <marker id="data-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+    </marker>
+    <marker id="file-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e67e22"/>
+    </marker>
+  </defs>
+</svg>
