@@ -1,0 +1,38 @@
+version: '3'
+#docker compose syntax version
+
+services:
+  #definition of my services (that will be containers)
+
+  db:
+    #    one service is db
+    image: keinos/sqlite3:latest
+    # an sqlite 3 image found on dockerhub
+    container_name: sale-analysis-db
+    volumes:
+      - ./data:/workspace
+    working_dir: /workspace
+    # sets the default directory inside the container
+    command: tail -f /dev/null
+    # command that keeps the container running
+  scripts:
+    #   the other service is scripts
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # instead of using an existing image, this service will be built from the Dockerfile
+      # in the current directory
+    container_name: scripts-exec
+    depends_on:
+      - db
+      #specifies that this service needs the db service so db service will start first
+    volumes:
+      - .:/app/analyse_des_ventes
+      # directory from my computer is mounted on a directory in the countainer
+      # then the countainer can access local scripts and db in my machine
+      # allows modification of scripts without rebuilding the image
+    environment:
+      - DB_PATH=/app/data/sales.db
+      # environnement variable for the db path
+      - PYTHONPATH=/app
+      # define app as a path where python will look for modules import
