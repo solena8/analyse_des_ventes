@@ -3,14 +3,16 @@
 
 import csv
 import io
+import os
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import select
 from datetime import datetime
 from models import Products, Stores, Sales
 
-PRODUCTS_PATH = "/app/data/données_brief_data_engineer_produits.csv"
-STORES_PATH = "/app/data/donnees_brief_data_engineer_magasins.csv"
-SALES_PATH = "/app/data/données_brief_data_engineer_ventes.csv"
+BASE_PATH = os.environ.get('DATA_PATH')
+PRODUCTS_PATH = f"{BASE_PATH}/données_brief_data_engineer_produits.csv"
+STORES_PATH =  f"{BASE_PATH}/donnees_brief_data_engineer_magasins.csv"
+SALES_PATH =  f"{BASE_PATH}/données_brief_data_engineer_ventes.csv"
 
 
 def fetch_data(path):

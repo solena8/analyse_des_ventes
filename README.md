@@ -69,21 +69,24 @@ Each analysis table is designed for a specific type of analysis:
 ### Project Structure
 ```
 project/
-├── data/                     # Data files
-├── scripts/                  # Python scripts
-│   ├── database.py           # Database setup
-│   ├── data_import.py        # Data import functions
-│   └── data_analysis.py      # Data analysis functions
-├── models/                   # Database models
-│   ├── base.py               # Base SQLAlchemy model
-│   ├── products.py           # Products model
-│   ├── stores.py             # Stores model
-│   ├── sales.py              # Sales model
-│   └── ...                   # Analysis models
-├── main.py                   # Main entry point script
-├── Dockerfile                # Docker image definition
-├── docker-compose.yml        # Service configuration
-└── requirements.txt          # Python dependencies
+├── data/                        # Data files
+├── docs/                        # architecture and db schema
+├── scripts/                     # Python scripts
+│   ├── database.py              # Database setup
+│   ├── data_import.py           # Data import functions
+│   └── data_analysis.py         # Data analysis functions
+├── models/                      # Database models
+│   ├── base.py                  # Base SQLAlchemy model
+│   ├── products.py              # Products model
+│   ├── stores.py                # Stores model
+│   ├── sales.py                 # Sales model
+│   ├── employee_sales_ratios.py # Analysis model
+│   ├── monthly_product_sales.py # Analysis model
+│   └── product_sales_by_store   # Analysis model
+├── main.py                      # Main entry point script
+├── Dockerfile                   # Docker image definition
+├── docker-compose.yml           # Service configuration
+└── requirements.txt             # Python dependencies
 ```
 
 ### Adding New Analyses
