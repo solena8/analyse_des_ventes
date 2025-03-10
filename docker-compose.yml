@@ -32,7 +32,7 @@ services:
       # then the countainer can access local scripts and db in my machine
       # allows modification of scripts without rebuilding the image
     environment:
-      - DB_PATH=/app/data/sales.db
+      - DB_PATH=/app/analyse_des_ventes/data/sale-analysis.db
       # environnement variable for the db path
       - PYTHONPATH=/app
       # define app as a path where python will look for modules import
