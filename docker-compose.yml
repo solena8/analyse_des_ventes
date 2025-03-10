@@ -26,13 +26,8 @@ services:
     depends_on:
       - db
       #specifies that this service needs the db service so db service will start first
-    volumes:
-      - .:/app/analyse_des_ventes
-      # directory from my computer is mounted on a directory in the countainer
-      # then the countainer can access local scripts and db in my machine
-      # allows modification of scripts without rebuilding the image
     environment:
-      - DB_PATH=/app/analyse_des_ventes/data/sale-analysis.db
+      - DB_PATH=/app/data/sale-analysis.db
       # environnement variable for the db path
       - PYTHONPATH=/app
       # define app as a path where python will look for modules import

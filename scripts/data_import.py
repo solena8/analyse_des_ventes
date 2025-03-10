@@ -6,11 +6,11 @@ import io
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import select
 from datetime import datetime
-from analyse_des_ventes.models import Products, Stores, Sales
+from models import Products, Stores, Sales
 
-PRODUITS_PATH = "/app/analyse_des_ventes/data/données_brief_data_engineer_produits.csv"
-MAGASINS_PATH = "/app/analyse_des_ventes/data/donnees_brief_data_engineer_magasins.csv"
-VENTES_PATH = "/app/analyse_des_ventes/data/données_brief_data_engineer_ventes.csv"
+PRODUCTS_PATH = "/app/data/données_brief_data_engineer_produits.csv"
+STORES_PATH = "/app/data/donnees_brief_data_engineer_magasins.csv"
+SALES_PATH = "/app/data/données_brief_data_engineer_ventes.csv"
 
 
 def fetch_data(path):
@@ -19,7 +19,7 @@ def fetch_data(path):
         with open(path, 'r', encoding='utf-8') as file:
             return file.read()
     except IOError as e:
-        print(f"Erreur lors de la lecture du fichier {path}: {str(e)}")
+        print(f"Error reading file {path}: {str(e)}")
         raise
 
 
@@ -41,10 +41,10 @@ def import_products(session, csv_content):
                 )
                 session.add(product)
         session.commit()
-        print("Produits importés avec succès")
+        print("Products imported successfully")
 
     except (SQLAlchemyError, csv.Error) as e:
-        print(f"Erreur lors de l'import des produits : {str(e)}")
+        print(f"Error importing products: {str(e)}")
         session.rollback()
         raise
 
@@ -65,10 +65,10 @@ def import_stores(session, csv_content):
                 )
                 session.add(store)
         session.commit()
-        print("Magasins importés avec succès")
+        print("Stores imported successfully")
 
     except (SQLAlchemyError, csv.Error) as e:
-        print(f"Erreur lors de l'import des magasins : {str(e)}")
+        print(f"Error importing stores: {str(e)}")
         session.rollback()
         raise
 
@@ -100,33 +100,33 @@ def import_sales(session, csv_content):
                 )
                 session.add(sale)
         session.commit()
-        print("Ventes importées avec succès")
+        print("Sales imported successfully")
 
     except (SQLAlchemyError, csv.Error) as e:
-        print(f"Erreur lors de l'import des ventes : {str(e)}")
+        print(f"Error importing sales: {str(e)}")
         session.rollback()
         raise
 
 
 def import_data(session):
-    """Fonction principale qui orchestre l'importation de toutes les données"""
+    """Main function that orchestrates the import of all data"""
     try:
-        print("Début de l'import des données")
+        print("Starting data import")
 
-        print(f"Import des produits depuis {PRODUITS_PATH}")
-        produits_data = fetch_data(PRODUITS_PATH)
+        print(f"Importing products from {PRODUCTS_PATH}")
+        produits_data = fetch_data(PRODUCTS_PATH)
         import_products(session, produits_data)
 
-        print(f"Import des magasins depuis {MAGASINS_PATH}")
-        magasins_data = fetch_data(MAGASINS_PATH)
+        print(f"Importing stores from {STORES_PATH}")
+        magasins_data = fetch_data(STORES_PATH)
         import_stores(session, magasins_data)
 
-        print(f"Import des ventes depuis {VENTES_PATH}")
-        ventes_data = fetch_data(VENTES_PATH)
+        print(f"Importing sales from {SALES_PATH}")
+        ventes_data = fetch_data(SALES_PATH)
         import_sales(session, ventes_data)
 
-        print("Import des données terminé avec succès")
+        print("Data import completed successfully")
 
     except Exception as e:
-        print(f"Erreur lors de l'import des données : {str(e)}")
+        print(f"Error during data import: {str(e)}")
         raise
