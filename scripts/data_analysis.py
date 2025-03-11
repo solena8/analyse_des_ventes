@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import logging
 from datetime import datetime
 from sqlalchemy import text
-from models import ProductSalesByStore, MonthlyProductSales, EmployeeSalesRatios
 
+# using SQL here as requested in the brief (instead of the sql alchemy orm I set up)
 
 def analyze_product_sales_by_store(session):
     try:

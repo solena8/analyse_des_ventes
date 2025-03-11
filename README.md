@@ -62,7 +62,35 @@ Each analysis table is designed for a specific type of analysis:
 
 ### Visualizations
 
-*[TODO: Add visualizations and their explanations here]*
+#### Employee Sales Correlation
+![employee_sales_correlation_dataviz.png](dataviz/employee_sales_correlation_dataviz.png)
+
+This scatter plot illustrates the relationship between the number of employees and total sales across different store locations. Each point represents a store, with the x-axis showing the number of employees and the y-axis representing total sales. The dotted red line indicates the linear regression trend, helping to visualize any correlation between employee count and sales performance.
+
+Key observations:
+- Marseille seems to have the highest number of employees with significant sales
+- Most stores cluster around 6-10 employees
+- There appears to be a positive correlation between employee count and sales
+
+#### Monthly Sales by Product
+![product_sales_by_month_dataviz.png](dataviz/product_sales_by_month_dataviz.png)
+
+This line graph tracks the monthly sales performance of the top 5 products over two months (2023-05 to 2023-06). Each colored line represents a different product, showing its sales trajectory.
+
+Key insights:
+- Produit E (purple) shows the highest sales and steepest growth
+- All products demonstrate a general upward sales trend
+- The rate of sales increase varies between products
+
+#### Product Sales by Store
+![product_sales_by_store_dataviz.png](dataviz/product_sales_by_store_dataviz.png)
+
+A stacked bar chart displaying product sales distribution across different store locations. Each bar represents a product, and the colored segments show sales volumes in each store.
+
+Key takeaways:
+- Produit E has the highest total sales across stores
+- Sales distribution varies significantly between products and stores
+- Some products perform better in specific locations
 
 ## Development
 
@@ -70,10 +98,12 @@ Each analysis table is designed for a specific type of analysis:
 ```
 project/
 ├── data/                        # Data files
-├── docs/                        # architecture and db schema
+├── docs/                        # Architecture and db schema
+├── dataviz/                     # Dataviz png files
 ├── scripts/                     # Python scripts
 │   ├── database.py              # Database setup
 │   ├── data_import.py           # Data import functions
+│   ├── data_visualization.py    # Dataviz functions
 │   └── data_analysis.py         # Data analysis functions
 ├── models/                      # Database models
 │   ├── base.py                  # Base SQLAlchemy model
