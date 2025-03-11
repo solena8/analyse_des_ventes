@@ -9,7 +9,6 @@ COPY . .
 #first . means copies all the local files, second . means into the docker workdir
 #(except what is in the dockignore file)
 
-RUN ls -l
 RUN pip install --no-cache-dir -r requirements.txt
 #install the dependencies in the countainer
 

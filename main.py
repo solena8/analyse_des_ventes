@@ -6,6 +6,7 @@ import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from scripts.data_analysis import run_analyses
 from scripts.database import setup_database
 from scripts.data_import import import_data
 
@@ -23,14 +24,13 @@ def main():
         # Creating tables
         setup_database(engine)
 
-        # Creating Session
         Session = sessionmaker(bind=engine)
         session = Session()
 
-        # Data import from csv
         import_data(session)
 
-        # Closing session
+        run_analyses(session)
+
         session.close()
         print("Processing completed successfully")
 

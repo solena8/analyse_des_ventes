@@ -7,8 +7,8 @@ class Stores(Base):
     __tablename__ = 'stores'
 
     store_id = Column(Integer, primary_key=True)
-    city = Column(String, nullable=False, name="Ville")
-    employee_nb = Column(Integer, nullable=False, name="Nombre de salariés")
+    city = Column(String, nullable=False)
+    employee_nb = Column(Integer, nullable=False)
 
     sales = relationship("Sales", back_populates="stores")
     product_sales = relationship("ProductSalesByStore", back_populates="stores")

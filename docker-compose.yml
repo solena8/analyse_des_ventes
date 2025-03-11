@@ -23,6 +23,8 @@ services:
       # instead of using an existing image, this service will be built from the Dockerfile
       # in the current directory
     container_name: scripts-exec
+    volumes:
+      - ./data:/app/data
     depends_on:
       - db
       #specifies that this service needs the db service so db service will start first
