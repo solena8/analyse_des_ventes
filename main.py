@@ -6,31 +6,31 @@ import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from scripts.data_analysis import run_analyses
 from scripts.database import setup_database
 from scripts.data_import import import_data
 
 
 def main():
     try:
-        # Configuration de la base de données
-        db_path = os.environ.get('DB_PATH', '/app/analyse_des_ventes/data/sale-analysis.db')
+        # Setting up the database
+        db_path = os.environ.get('DB_PATH')
         print(f"Using database: {db_path}")
 
         os.makedirs(os.path.dirname(db_path), exist_ok=True)
 
         engine = create_engine(f'sqlite:///{db_path}')
 
-        # Création des tables
+        # Creating tables
         setup_database(engine)
 
-        # Création de la session
         Session = sessionmaker(bind=engine)
         session = Session()
 
-        # Import des données
         import_data(session)
 
-        # Fermeture de la session
+        run_analyses(session)
+
         session.close()
         print("Processing completed successfully")
 

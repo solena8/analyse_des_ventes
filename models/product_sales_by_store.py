@@ -8,8 +8,8 @@ class ProductSalesByStore(Base):
 
     analysis_id = Column(Integer,primary_key=True)
     analysis_date = Column(Date, nullable=False)
-    product_id = Column(String, ForeignKey('products.product_id'), name="ID Référence produit", nullable=False)
-    store_id = Column(Integer, ForeignKey('stores.store_id'), name="ID Magasin", nullable=False)
+    product_id = Column(String, ForeignKey('products.product_id'), nullable=False)
+    store_id = Column(Integer, ForeignKey('stores.store_id'), nullable=False)
     quantity_sold = Column(Integer,nullable=False)
     revenue = Column(Integer,nullable=False)
 

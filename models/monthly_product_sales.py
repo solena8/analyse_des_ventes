@@ -8,7 +8,7 @@ class MonthlyProductSales(Base):
 
     analysis_id = Column(Integer,primary_key=True)
     analysis_date = Column(Date, nullable=False)
-    product_id = Column(String, ForeignKey('products.product_id'), name="ID Référence produit", nullable=False)
+    product_id = Column(String, ForeignKey('products.product_id'), nullable=False)
     year_month = Column(String, nullable=False)
     quantity_sold = Column(Integer,nullable=False)
     total_amount = Column(Integer,nullable=False)
