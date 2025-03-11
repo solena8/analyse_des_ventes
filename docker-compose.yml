@@ -25,12 +25,13 @@ services:
     container_name: scripts-exec
     volumes:
       - ./data:/app/data
+      - ./dataviz:/app/dataviz
     depends_on:
       - db
       #specifies that this service needs the db service so db service will start first
     environment:
       - DB_PATH=/app/data/sale-analysis.db
       - DATA_PATH=/app/data
-      # environnement variable for the db path
+      - DATAVIZ_PATH=/app/dataviz
       - PYTHONPATH=/app
       # define app as a path where python will look for modules import

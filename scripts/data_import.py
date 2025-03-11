@@ -111,7 +111,7 @@ def import_sales(session, csv_content):
 
 
 def import_data(session):
-    """Main function that orchestrates the import of all data"""
+    # Main function that orchestrates the import of all data
     try:
         print("Starting data import")
 
@@ -132,3 +132,4 @@ def import_data(session):
     except Exception as e:
         print(f"Error during data import: {str(e)}")
         raise
+

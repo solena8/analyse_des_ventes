@@ -7,6 +7,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from scripts.data_analysis import run_analyses
+from scripts.data_visualization import run_visualizations
 from scripts.database import setup_database
 from scripts.data_import import import_data
 
@@ -30,6 +31,8 @@ def main():
         import_data(session)
 
         run_analyses(session)
+
+        run_visualizations()
 
         session.close()
         print("Processing completed successfully")
