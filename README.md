@@ -4,20 +4,21 @@ This project implements a sales analysis system for a small to medium-sized busi
 
 ## Architecture
 
+![architecture.svg](docs/architecture.svg)
+
 The system is built using a two-service architecture:
 
 ### Script Execution Service (Python)
 This service is responsible for:
-- Importing data from CSV files
-- Processing and analyzing sales data
-- Storing analysis results in the database
+- Importing data from CSV files ([data_import.py](./scripts/data_import.py))
+- Processing, analyzing sales data and storing analysis results in the database ([data_analysis.py](./scripts/data_analysis.py))
+- Processing analysis result data in the database to create data visualization ([data_visualization.py](./scripts/data_visualization.py))
 
 The service is built from a custom Docker image using Python 3.12 on a slim Debian base. It contains modules for:
 - Database setup and connection management
 - Data import from CSV files
 - Data analysis and reporting
 
-![architecture.svg](docs/architecture.svg)
 
 ### Database Service (SQLite)
 This service provides:
@@ -28,6 +29,8 @@ This service provides:
 The service uses the `keinos/sqlite3:latest` image, which is an Alpine-based implementation of SQLite3 with support for both AMD and ARM architectures.
 
 ## Database Schema
+
+![sale_analysis_db_schema.png](docs/sale_analysis_db_schema.png)
 
 The database consists of the following tables:
 - **Products**: Stores product information
@@ -40,7 +43,6 @@ Each analysis table is designed for a specific type of analysis:
 - **monthly_product_sales**: Monitors product sales trends by month
 - **employee_sales_ratio**: Analyzes the relationship between employee count and sales
 
-![sale_analysis_db_schema.png](docs/sale_analysis_db_schema.png)
 
 ## Setup and Installation
 
@@ -124,4 +126,3 @@ To add a new analysis:
 1. Create a new model in the `models/` directory
 2. Add the model to `models/__init__.py`
 3. Implement the analysis logic in `scripts/data_analysis.py`
-4. Update the main script to include the new analysis
